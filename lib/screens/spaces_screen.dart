@@ -10,6 +10,7 @@ class SpacesScreen extends StatefulWidget {
   const SpacesScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SpacesScreenState createState() => _SpacesScreenState();
 }
 
@@ -49,7 +50,7 @@ class _SpacesScreenState extends State<SpacesScreen> {
         automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Espaços Disponíveis',
           style: TextStyle(
             fontSize: 24,

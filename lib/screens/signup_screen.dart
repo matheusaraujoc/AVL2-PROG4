@@ -5,6 +5,7 @@ class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignupScreenState createState() => _SignupScreenState();
 }
 
@@ -40,6 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
         );
 
         if (response != null) {
+          // ignore: use_build_context_synchronously
           Navigator.pushReplacementNamed(context, '/spaces');
         }
       } catch (e) {

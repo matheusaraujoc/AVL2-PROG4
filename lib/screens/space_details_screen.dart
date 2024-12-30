@@ -39,6 +39,7 @@ class _SpaceDetailsScreenState extends State<SpaceDetailsScreen> {
         _currentSpace = updatedSpace;
       });
     } catch (e) {
+      // ignore: avoid_print
       print('Error updating space data: $e');
     }
   }
@@ -515,6 +516,7 @@ class _SpaceDetailsScreenState extends State<SpaceDetailsScreen> {
 
       if (!mounted) return;
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Horário reservado com sucesso!'),
@@ -527,9 +529,11 @@ class _SpaceDetailsScreenState extends State<SpaceDetailsScreen> {
     } catch (e) {
       if (!mounted) return;
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Erro ao reservar horário'),
+          // ignore: use_build_context_synchronously
           backgroundColor: Theme.of(context).colorScheme.error,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

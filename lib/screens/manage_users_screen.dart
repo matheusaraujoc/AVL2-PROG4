@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../services/auth_service.dart';
 
 class ManageUsersScreen extends StatefulWidget {
-  const ManageUsersScreen({Key? key}) : super(key: key);
+  const ManageUsersScreen({super.key});
 
   @override
   State<ManageUsersScreen> createState() => _ManageUsersScreenState();
@@ -54,7 +54,6 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
         });
       }
     } catch (e) {
-      print('Error fetching data: $e');
       setState(() => isLoading = false);
     }
   }
@@ -84,7 +83,7 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
       }
       await fetchData();
     } catch (e) {
-      print('Error toggling admin status: $e');
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Erro ao atualizar status de administrador'),

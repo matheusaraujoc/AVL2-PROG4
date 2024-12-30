@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../theme/theme_manager.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -446,7 +446,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       decoration: BoxDecoration(
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .surfaceVariant,
+                                            .surfaceContainerHighest,
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: Row(

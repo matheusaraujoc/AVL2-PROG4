@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -65,9 +67,7 @@ class ThemeManager with ChangeNotifier {
       onSecondaryContainer: Color(0xFF1F2937),
       surface: Colors.white,
       onSurface: Color(0xFF1F2937),
-      background: Color(0xFFF8F9FA),
-      onBackground: Color(0xFF1F2937),
-      surfaceVariant: Color(0xFFF3F4F6),
+      surfaceContainerHighest: Color(0xFFF3F4F6),
       onSurfaceVariant: Color(0xFF4B5563),
       error: Color(0xFFDC2626),
       outline: Color(0xFFE5E7EB),
@@ -108,9 +108,7 @@ class ThemeManager with ChangeNotifier {
       onSecondaryContainer: Color(0xFFF3F4F6),
       surface: Color(0xFF1F2937),
       onSurface: Color(0xFFF9FAFB),
-      background: Color(0xFF111827),
-      onBackground: Color(0xFFF9FAFB),
-      surfaceVariant: Color(0xFF374151),
+      surfaceContainerHighest: Color(0xFF374151),
       onSurfaceVariant: Color(0xFFE5E7EB),
       error: Color(0xFFFCA5A5),
       outline: Color(0xFF4B5563),

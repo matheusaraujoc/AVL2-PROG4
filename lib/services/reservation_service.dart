@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:flutter_application_2/utils/log_helper.dart';
 import 'package:http/http.dart' as http;

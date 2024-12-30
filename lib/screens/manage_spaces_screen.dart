@@ -10,11 +10,12 @@ class TimeSlot {
 
   TimeSlot({required this.startTime, required this.endTime});
 
+  @override
   String toString() => '$startTime - $endTime';
 }
 
 class ManageSpacesScreen extends StatefulWidget {
-  const ManageSpacesScreen({Key? key}) : super(key: key);
+  const ManageSpacesScreen({super.key});
 
   @override
   State<ManageSpacesScreen> createState() => _ManageSpacesScreenState();
@@ -44,6 +45,7 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
         });
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao carregar espaços: $e')),
       );
@@ -60,11 +62,13 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
       if (response.statusCode == 200) {
         await loadSpaces();
         _eventBus.notify();
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Espaço atualizado com sucesso!')),
         );
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao atualizar espaço: $e')),
       );
@@ -78,11 +82,13 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
       if (response.statusCode == 200) {
         await loadSpaces();
         _eventBus.notify();
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Espaço excluído com sucesso!')),
         );
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao deletar espaço: $e')),
       );
@@ -98,11 +104,13 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
       if (response.statusCode == 200) {
         await loadSpaces();
         _eventBus.notify();
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Espaço criado com sucesso!')),
         );
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao criar espaço: $e')),
       );
@@ -161,7 +169,7 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
                         oldValue.text.length == 1) {
                       return TextEditingValue(
                         text: '$text:',
-                        selection: TextSelection.collapsed(offset: 3),
+                        selection: const TextSelection.collapsed(offset: 3),
                       );
                     }
                     return newValue;
@@ -186,7 +194,7 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
                         oldValue.text.length == 1) {
                       return TextEditingValue(
                         text: '$text:',
-                        selection: TextSelection.collapsed(offset: 3),
+                        selection: const TextSelection.collapsed(offset: 3),
                       );
                     }
                     return newValue;
@@ -308,7 +316,7 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
                         ],
                       ),
                     );
-                  }).toList(),
+                  }),
                   ElevatedButton(
                     onPressed: () {
                       _showTimeSlotDialog(context, (TimeSlot slot) {
@@ -418,7 +426,7 @@ class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
                             Text('Horários: ${space['availableSlots'].length}'),
                             Row(
                               children: [
-                                Text('Status: '),
+                                const Text('Status: '),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
