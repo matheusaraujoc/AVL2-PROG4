@@ -24,13 +24,11 @@ class AuthService {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // No método checkIfUserIsAdmin do AuthService
   Future<bool> checkIfUserIsAdmin(String userId) async {
     try {
       final response = await http.get(
         Uri.parse('$dbUrl/admins/$userId.json'),
       );
-      // Adicione este print
       print('Verificando admin para userId: $userId');
       print('Resposta: ${response.body}');
       return json.decode(response.body) == true;
@@ -51,7 +49,6 @@ class AuthService {
     currentUserName = prefs.getString('userName');
     currentUserEmail = prefs.getString('userEmail');
 
-    // Adicione esta verificação
     if (currentUserId != null) {
       isAdmin = await checkIfUserIsAdmin(currentUserId!);
     }
@@ -94,7 +91,6 @@ class AuthService {
         final userId = responseData['localId'];
         print('Login bem sucedido. UserId: $userId');
 
-        // Busca dados adicionais do usuário
         print('Buscando dados do usuário no Realtime Database...');
         final userDataResponse = await http.get(
           Uri.parse('$dbUrl/users/$userId.json'),

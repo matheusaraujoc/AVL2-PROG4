@@ -29,12 +29,10 @@ class _ManageReservationsScreenState extends State<ManageReservationsScreen> {
     setState(() => _isLoading = true);
 
     try {
-      // Carregar reservas primeiro
       final reservations = await _reservationService.getAllReservations();
       setState(() => _reservations = reservations);
 
       try {
-        // Carregar espaços separadamente
         final spaces = await _spaceService.getAllSpaces();
         setState(() {
           _spaceNames = {
@@ -43,7 +41,6 @@ class _ManageReservationsScreenState extends State<ManageReservationsScreen> {
         });
       } catch (e) {
         print('Erro ao carregar espaços: $e');
-        // Não mostrar erro ao usuário, apenas registrar
       }
     } catch (e) {
       print('Erro ao carregar reservas: $e');

@@ -214,9 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {
-                        // Implementar recuperação de senha
-                      },
+                      onPressed: () {},
                       child: Text(
                         'Esqueceu a senha?',
                         style: TextStyle(

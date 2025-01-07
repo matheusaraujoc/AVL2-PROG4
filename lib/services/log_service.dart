@@ -20,15 +20,11 @@ class LogService {
         timestamp: DateTime.now(),
       );
 
-      // Primeiro, obtemos a contagem atual de logs
       final currentLogs = await getLogs();
 
-      // Se já tivermos 50 logs, removemos o mais antigo
       if (currentLogs.length >= maxLogs) {
-        // Ordenamos por timestamp para encontrar o log mais antigo
         currentLogs.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
-        // Removemos o log mais antigo
         if (currentLogs.isNotEmpty) {
           await http.delete(
             Uri.parse('$baseUrl/logs/${currentLogs[0].id}.json'),
@@ -36,7 +32,6 @@ class LogService {
         }
       }
 
-      // Criamos o novo log
       final response = await http.post(
         Uri.parse('$baseUrl/logs.json'),
         body: json.encode(log.toJson()),
@@ -67,7 +62,6 @@ class LogService {
           logs.add(SystemLog.fromJson(key, value));
         });
 
-        // Ordenamos os logs do mais recente para o mais antigo
         logs.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
         return logs;
@@ -80,19 +74,15 @@ class LogService {
     }
   }
 
-  // Método auxiliar para limpar logs antigos manualmente se necessário
   Future<void> cleanOldLogs() async {
     try {
       final logs = await getLogs();
 
       if (logs.length > maxLogs) {
-        // Ordenamos do mais antigo para o mais recente
         logs.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
-        // Calculamos quantos logs precisam ser removidos
         final logsToRemove = logs.length - maxLogs;
 
-        // Removemos os logs mais antigos
         for (var i = 0; i < logsToRemove; i++) {
           await http.delete(
             Uri.parse('$baseUrl/logs/${logs[i].id}.json'),

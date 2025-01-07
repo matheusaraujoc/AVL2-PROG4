@@ -23,10 +23,8 @@ class ReservationService {
       print('Logging failed but continuing with reservation: $e');
     }
 
-// Continue with reservation creation...
-
     final reservation = Reservation(
-      id: '', // Será gerado pelo Firebase
+      id: '',
       spaceId: spaceId,
       userId: AuthService.currentUserId!,
       userName: AuthService.currentUserName!,
@@ -63,7 +61,6 @@ class ReservationService {
           }
         });
 
-        // Ordenar reservas por data de criação (mais recentes primeiro)
         reservations.sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
         return reservations;
@@ -137,7 +134,6 @@ class ReservationService {
           }
         });
 
-        // Ordenar reservas por data de criação (mais recentes primeiro)
         reservations.sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
         return reservations;
@@ -167,11 +163,9 @@ class ReservationService {
 
       final reservation = Reservation.fromJson(reservationId, reservationData);
 
-      // Primeiro retornar o slot
       final spaceService = SpaceService();
       await spaceService.returnSlot(reservation.spaceId, reservation.timeSlot);
 
-      // Depois deletar a reserva
       final deleteResponse = await http.delete(
         Uri.parse('$baseUrl/reservations/$reservationId.json'),
       );
@@ -188,7 +182,6 @@ class ReservationService {
   Future<void> updateSpaceAvailability(
       String spaceId, String timeSlot, bool available) async {
     try {
-      // Primeiro, buscar os slots disponíveis atuais
       final response = await http.get(
         Uri.parse('$baseUrl/spaces/$spaceId/availableSlots.json?auth=$apiKey'),
       );
@@ -199,13 +192,11 @@ class ReservationService {
 
       final Map<String, dynamic>? currentSlots = json.decode(response.body);
 
-      // Determinar o próximo índice
       int nextIndex = 0;
       if (currentSlots != null) {
         nextIndex = currentSlots.length;
       }
 
-      // Atualizar com o novo slot usando índice numérico
       final updateResponse = await http.patch(
         Uri.parse('$baseUrl/spaces/$spaceId/availableSlots.json?auth=$apiKey'),
         body: json.encode({'$nextIndex': timeSlot}),
