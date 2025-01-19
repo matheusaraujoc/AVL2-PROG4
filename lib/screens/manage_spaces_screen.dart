@@ -22,8 +22,7 @@ class ManageSpacesScreen extends StatefulWidget {
 }
 
 class _ManageSpacesScreenState extends State<ManageSpacesScreen> {
-  final String dbUrl =
-      'https://testedeautenticacao-ab5ae-default-rtdb.firebaseio.com';
+  final String dbUrl = 'https://reservas-f39b7-default-rtdb.firebaseio.com/';
   final _eventBus = SpaceEventBus();
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> spaces = {};
